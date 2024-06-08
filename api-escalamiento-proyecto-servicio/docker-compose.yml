@@ -1,0 +1,26 @@
+version: '3.8'
+services: 
+  api-escalamiento-proyecto-servicio: 
+    image: laurabm/api-escalamiento-micro-servicio:v1
+    build: 
+      context: .
+    ports:
+      - "4011-4019:5510"
+    deploy:
+      mode: replicated
+      replicas: 3
+    networks:
+      - api-escalamiento-net
+
+  balanceador-api-escalamiento-proyecto-servicio:
+    container_name: balanceador-api-escalamiento-proyecto-servicio
+    image: laurabm/balanceador:v1
+    build:
+      context: ./../balanceador
+    ports:
+      - "4020:80"
+    networks:
+      - api-escalamiento-net
+
+networks:
+  api-escalamiento-net:
