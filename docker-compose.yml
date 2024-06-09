@@ -1,0 +1,28 @@
+version: '3.8'
+services: 
+  proyecto-servicio-jenkins: 
+    image: laurabm/proyecto-servicio-jenkins:v1
+    build: 
+      context: ./api-escalamiento-proyecto-servicio
+    ports:
+      - "5510"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - PORT=5510
+    deploy:
+      mode: replicated
+      replicas: 3
+    networks:
+      - proyecto-servicio-net
+
+  balanceador-proyecto-servicio-jenkins:
+    image: laurabm/balanceador-proyecto-servicio-jenkins:v1
+    build:
+      context: ./balanceador
+    ports:
+      - "4020:80"
+    networks:
+      - proyecto-servicio-net
+
+networks:
+  proyecto-servicio-net:
