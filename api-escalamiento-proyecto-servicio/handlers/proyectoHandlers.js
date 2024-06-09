@@ -24,6 +24,7 @@ export const listarProyectoHandler = async (req,res) => {
 export const editarProyectoHandler = async(req,res) => {
     try {
         console.log(req.params);
+        console.log("editar")
         const {id} = req.params;
         const proyectoActualizado = await editarProyecto(req.body, id);
         if(proyectoActualizado === null) {
