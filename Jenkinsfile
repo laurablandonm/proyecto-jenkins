@@ -29,17 +29,7 @@ pipeline {
                 }
             }
         }
-         stage('Subir imagen a dockerhub'){
-            steps {
-                script {
-                    withCredentials([
-                            string(credentialsId: 'MONGO_URI', variable: 'MONGO_URI')
-                    ]) {
-                        sh 'docker-compose push'
-                    }
-                }
-            }
-        }
+  
     }
 
     post {
@@ -48,7 +38,7 @@ pipeline {
                 subject: "Status del build: ${currentBuild.currentResult}",
                 body: "Se ha completado el build. Puede detallar en: ${env.BUILD_URL}",
                 to: "laura.blandonm@est.iudigital.edu.co",
-                from: ""
+                from: "jenkins@iudigital.edu.co"
             )
         }
     }
