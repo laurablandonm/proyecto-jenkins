@@ -17,7 +17,7 @@ export const crearProyecto = async (requestProyecto) => {
 }
 
 export const listarProyecto = async () => {
-    console.log("se esta pidiendo la lista...");
+    
     const listaProyecto = await Proyecto.find().populate([
         {
             path:"cliente",
