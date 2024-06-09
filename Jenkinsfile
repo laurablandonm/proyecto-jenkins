@@ -29,6 +29,17 @@ pipeline {
                 }
             }
         }
+         stage('Subir imagen a dockerhub'){
+            steps {
+                script {
+                    withCredentials([
+                            string(credentialsId: 'MONGO_URI', variable: 'MONGO_URI')
+                    ]) {
+                        sh 'docker-compose push'
+                    }
+                }
+            }
+        }
     }
 
     post {
