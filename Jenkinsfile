@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clonar el Repositorio'){
             steps {
-                git branch: 'main', url: 'https://github.com/laurablandonm/proyecto-jenkins.git'
+                git branch: 'master', url: 'https://github.com/laurablandonm/proyecto-jenkins.git'
             }
         }
         stage('Construir imagen de Docker'){
